@@ -19,16 +19,21 @@ requirements:
   host:
     - pip
     - python
-    - setuptools >=0.6
-    - dill >=0.2.5
+    - setuptools
+    - wheel
+    - dill
   run:
     - python
-    - dill >=0.2.5
+    - dill >=0.3.6
 
 test:
   imports:
     - multiprocess
     - multiprocess.dummy
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://pypi.org/project/multiprocess/
