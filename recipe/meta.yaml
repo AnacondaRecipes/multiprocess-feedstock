@@ -36,11 +36,12 @@ test:
     - pip
 
 about:
-  home: https://pypi.org/project/multiprocess/
-  license: BSD-3-Clause
-  license_file: COPYING.txt
+  home: https://github.com/uqfoundation/multiprocess
   summary: better multiprocessing and multithreading in python
-
+  license: BSD-3-Clause
+  license_file:
+    - COPYING
+    - LICENSE
 extra:
   recipe-maintainers:
     - jschueller
