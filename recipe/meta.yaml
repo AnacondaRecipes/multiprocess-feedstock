@@ -37,10 +37,17 @@ test:
 about:
   home: https://github.com/uqfoundation/multiprocess
   summary: better multiprocessing and multithreading in python
+  description: |
+    `multiprocess` is a fork of `multiprocessing`. `multiprocess` extends `multiprocessing` to provide enhanced serialization, using `dill`. `multiprocess` leverages `multiprocessing` to support the spawning of processes using the API of the python standard library's `threading module. multiprocessing has been distributed as part of the standard library since python 2.6.
   license: BSD-3-Clause
+  license_family: BSD
   license_file:
     - COPYING
     - LICENSE
+  license_url: https://github.com/uqfoundation/multiprocess/blob/multiprocess-{{ version }}/LICENSE
+  doc_url: https://multiprocess.readthedocs.io/en/latest/
+  doc_source_url: https://github.com/uqfoundation/multiprocess/tree/master/docs
+  dev_url: https://github.com/uqfoundation/multiprocess
 extra:
   recipe-maintainers:
     - jschueller
