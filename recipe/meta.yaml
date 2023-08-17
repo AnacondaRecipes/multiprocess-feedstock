@@ -1,5 +1,5 @@
 {% set name = "multiprocess" %}
-{% set version = "0.70.14" %}
+{% set version = "0.70.15" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3eddafc12f2260d27ae03fe6069b12570ab4764ab59a75e81624fac453fbf46a
+  sha256: f20eed3036c0ef477b07a4177cf7c1ba520d9a2677870a4f47fe026f0cd6787e
 
 build:
   number: 0
   skip: true  # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -20,10 +20,9 @@ requirements:
     - python
     - setuptools
     - wheel
-    - dill
   run:
     - python
-    - dill >=0.3.6
+    - dill >=0.3.7
 
 test:
   imports:
@@ -44,10 +43,9 @@ about:
   license_file:
     - COPYING
     - LICENSE
-  license_url: https://github.com/uqfoundation/multiprocess/blob/multiprocess-{{ version }}/LICENSE
-  doc_url: https://multiprocess.readthedocs.io/en/latest/
-  doc_source_url: https://github.com/uqfoundation/multiprocess/tree/master/docs
+  doc_url: https://multiprocess.readthedocs.io
   dev_url: https://github.com/uqfoundation/multiprocess
+
 extra:
   recipe-maintainers:
     - jschueller
