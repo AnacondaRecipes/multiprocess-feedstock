@@ -27,11 +27,20 @@ requirements:
 test:
   imports:
     - multiprocess
+    - multiprocess.connection
     - multiprocess.dummy
+    - multiprocess.heap
+    - multiprocess.managers
+    - multiprocess.pool
+    - multiprocess.queues
+    - multiprocess.tests
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest --pyargs multiprocess.tests
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/uqfoundation/multiprocess
