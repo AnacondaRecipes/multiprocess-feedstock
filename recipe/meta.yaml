@@ -1,37 +1,45 @@
 {% set name = "multiprocess" %}
-{% set version = "0.70.15" %}
+{% set version = "0.70.18" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f20eed3036c0ef477b07a4177cf7c1ba520d9a2677870a4f47fe026f0cd6787e
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f9597128e6b3e67b23956da07cf3d2e5cba79e2f4e0fba8d7903636663ec6d0d
 
 build:
   number: 0
-  skip: true  # [py<37]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=42
   run:
     - python
-    - dill >=0.3.7
+    - dill >=0.4.0
 
 test:
   imports:
     - multiprocess
+    - multiprocess.connection
     - multiprocess.dummy
+    - multiprocess.heap
+    - multiprocess.managers
+    - multiprocess.pool
+    - multiprocess.queues
+    - multiprocess.tests
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest --pyargs multiprocess.tests
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/uqfoundation/multiprocess
