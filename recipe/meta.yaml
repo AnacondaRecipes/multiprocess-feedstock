@@ -37,7 +37,7 @@ test:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
       # TODO: recehck this in a new pkg version (have to be fixed) (To many fails to skip one by one)
-    - pytest --pyargs multiprocess.tests -k "not ({{ ignore_tests }})"  # [not (linux and py==314) and not (osx and py==314)]
+    - pytest --pyargs multiprocess.tests  # [not (linux and py==314) and not (osx and py==314)]
   requires:
     - pip
     - pytest
