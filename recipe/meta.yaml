@@ -21,7 +21,7 @@ requirements:
     - setuptools >=42
   run:
     - python
-    - dill >=0.4.0
+    - dill >=0.4.1
 
 test:
   imports:
@@ -36,8 +36,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    # TODO: recehck this in a new pkg version (have to be fixed) (To many fails to skip one by one)
-    - pytest --pyargs multiprocess.tests  # [not (linux and py==314) and not (osx and py==314)]
+    - pytest --pyargs multiprocess.tests
   requires:
     - pip
     - pytest
