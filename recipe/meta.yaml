@@ -1,5 +1,5 @@
 {% set name = "multiprocess" %}
-{% set version = "0.70.18" %}
+{% set version = "0.70.19" %}
 
 package:
   name: {{ name }}
@@ -7,21 +7,22 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f9597128e6b3e67b23956da07cf3d2e5cba79e2f4e0fba8d7903636663ec6d0d
+  sha256: 952021e0e6c55a4a9fe4cd787895b86e239a40e76802a789d6305398d3975897
 
 build:
-  number: 1
-  skip: true  # [py<38]
+  number: 0
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
     - python
+    - wheel
     - setuptools >=42
   run:
     - python
-    - dill >=0.4.0
+    - dill >=0.4.1
 
 test:
   imports:
@@ -36,8 +37,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-      # TODO: recehck this in a new pkg version (have to be fixed) (To many fails to skip one by one)
-    - pytest --pyargs multiprocess.tests  # [not (linux and py==314) and not (osx and py==314)]
+    - pytest --pyargs multiprocess.tests
   requires:
     - pip
     - pytest
@@ -46,10 +46,10 @@ about:
   home: https://github.com/uqfoundation/multiprocess
   summary: better multiprocessing and multithreading in python
   description: |
-    `multiprocess` is a fork of `multiprocessing`. `multiprocess` extends 
-    `multiprocessing` to provide enhanced serialization, using `dill`. 
-    `multiprocess` leverages `multiprocessing` to support the spawning of processes 
-    using the API of the python standard library's `threading module. multiprocessing has been 
+    `multiprocess` is a fork of `multiprocessing`. `multiprocess` extends
+    `multiprocessing` to provide enhanced serialization, using `dill`.
+    `multiprocess` leverages `multiprocessing` to support the spawning of processes
+    using the API of the python standard library's `threading module. multiprocessing has been
     distributed as part of the standard library since python 2.6.
   license: BSD-3-Clause
   license_family: BSD
